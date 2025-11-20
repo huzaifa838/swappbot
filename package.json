@@ -1,0 +1,14 @@
+{
+  "name": "chatbot-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\" --names \"SERVER,CLIENT\" --prefix-colors \"blue,green\"",
+    "server": "cd backend && npm run start",
+    "client": "cd chatbot && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
+

@@ -2,55 +2,47 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import chalk from "chalk";
+import mongoose from "mongoose";
 
-// ✅ Import database connection
+import authRoutes from "./routes/auth.routes.js";
+import botRoutes from "./routes/swappbot.routes.js";
 import connectDB from "./config/db.js";
 
-// ✅ Import your routes
-import swappbotRoutes from "./routes/swappbot.routes.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// ✅ Load environment variables
-dotenv.config();
+// Get dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env correctly
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-// ✅ Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Connect to MongoDB
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/bot", botRoutes);
+
 connectDB();
 
-// ✅ Routes
-app.use("/bot", swappbotRoutes);
-
-// ✅ Health check route
+// Health
 app.get("/health", (req, res) => {
-  const dbState = ["disconnected", "connected", "connecting", "disconnecting"];
+  const dbState = ["disconnected","connected","connecting","disconnecting"];
   res.json({
-    status: "✅ Server running",
-    database: dbState[mongoose.connection.readyState],
+    status: "server ok",
+    database: dbState[mongoose.connection.readyState]
   });
 });
 
-// ✅ 404 handler
 app.use((req, res) => {
-  res.status(404).json({ message: "❌ Route not found" });
+  res.status(404).json({ message: "Route not found" });
 });
 
-// ✅ Global error handler
-app.use((err, req, res, next) => {
-  console.error(chalk.red("🔥 Server Error:"), err.stack);
-  res.status(500).json({
-    success: false,
-    message: "Internal Server Error",
-    error: err.message,
-  });
-});
-
-// ✅ Start Server
 app.listen(port, () => {
   console.log(chalk.cyan(`🚀 Server running on port ${port}`));
 });
-

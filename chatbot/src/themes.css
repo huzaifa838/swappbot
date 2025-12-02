@@ -1,0 +1,156 @@
+/* =============== GLOBAL DEFAULT =============== */
+:root {
+  --neon-color: rgba(0, 180, 255, var(--neon-bright));
+  --neon-bright: 0.7;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: var(--neon-color);
+  font-family: monospace;
+}
+
+/* ---------------- PAGE BOXES ---------------- */
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 350px;
+  padding: 25px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--neon-color);
+  border-radius: 15px;
+  box-shadow: 0 0 20px var(--neon-color);
+}
+
+/* ------------- INPUTS & BUTTONS ------------- */
+.input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--neon-color);
+  border-radius: 8px;
+  color: var(--neon-color);
+  margin-bottom: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--neon-color);
+  border-radius: 8px;
+  color: var(--neon-color);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: var(--neon-color);
+  color: black;
+}
+
+/* Small send button */
+.small-btn {
+  padding: 6px 10px !important;
+  font-size: 12px;
+}
+
+/* ---------------- CHAT PAGE ---------------- */
+.chat-page {
+  margin-top: 80px;
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  border-right: 1px solid var(--neon-color);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-item {
+  padding: 8px;
+  border: 1px solid var(--neon-color);
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.chat-item.active {
+  background: rgba(255,255,255,0.05);
+}
+
+/* CHAT WINDOW */
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Transparent messages */
+.msg {
+  max-width: 70%;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--neon-color);
+  background: transparent !important;
+}
+
+.msg.user {
+  margin-left: auto;
+}
+
+.msg.bot {
+  margin-right: auto;
+}
+
+.time {
+  font-size: 10px;
+  margin-top: 5px;
+  opacity: 0.6;
+}
+
+/* SEND BAR */
+.send-bar {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid var(--neon-color);
+}
+
+/* =========== THEMES =========== */
+
+.theme-blue {
+  --neon-color: rgba(0, 180, 255, var(--neon-bright));
+}
+
+.theme-red {
+  --neon-color: rgba(255, 0, 0, var(--neon-bright));
+}
+
+.theme-green {
+  --neon-color: rgba(0, 255, 0, var(--neon-bright));
+}
+
+.theme-orange {
+  --neon-color: rgba(255, 150, 0, var(--neon-bright));
+}
+
+/* Clean white theme */
+.theme-white {
+  --neon-color: rgba(255,255,255,var(--neon-bright));
+}
